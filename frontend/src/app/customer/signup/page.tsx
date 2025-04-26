@@ -38,7 +38,7 @@ export default function CustomerSignup() {
         // when everything is good to send to the backend
         setErrorMessage(null);
 
-        const response = await fetch('http://localhost:5001/signup', {
+        const response = await fetch('http://localhost:5001/user-signup', {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newUser),
@@ -63,22 +63,18 @@ export default function CustomerSignup() {
                 <p className="text-red-500 mb-4 max-w-md mx-auto">{errorMessage}</p>
             )}
             <h1 className="text-3xl text-center">New Customer Sign Up</h1>
+            
             <form className="p-8 rounded-lg shadow-md max-w-md mx-auto" onSubmit={onSubmit}>
                 <label htmlFor="full_name">Full Name:</label><br/>
                 <input type="text" id="full_name" name="full_name" required/><br/>
-
                 <label htmlFor="email">Email:</label><br/>
                 <input type="email" id="email" name="email" /><br/>
-
                 <label htmlFor="phone">Phone:</label><br/>
                 <input type="tel" id="phone" name="phone" pattern="[0-9]{10,15}" /><br/>
-
                 <label htmlFor="password">Password:</label><br/>
                 <input type="password" id="password" name="password" required/><br/>
-
                 <label htmlFor="password_check">Confirm Password:</label><br/>
                 <input type="password" id="password_check" name="password_check" required/><br/>
-
                 <input className="cursor-pointer" type="submit" />
             </form>
         </>

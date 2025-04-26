@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { useState } from "react";
+import CustomerLoginForm from "./customer/login/customerLogin";
+import RestaurantLoginForm from "./restaurant/login/restaurantLogin";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<'customer' | 'restaurant'>('customer');
@@ -22,20 +24,37 @@ export default function Home() {
       </div>
       { activeTab === 'customer' ? 
         // customer tab active
-        (<div className="flex items-center justify-center gap-4">
-        <button
-          className="px-6 py-3 bg-blue-900 text-white 
-          font-semibold rounded-xl shadow-md hover:bg-blue-700 
-          transition duration-100 cursor-pointer"
-          >Log in</button>
-        <button onClick={() => router.push('/customer/signup')}
-          className="px-6 py-3 bg-blue-900 text-white 
-          font-semibold rounded-xl shadow-md hover:bg-blue-700 
-          transition duration-100 cursor-pointer"
-          >Sign Up</button>
+        (<div className="flex flex-col items-center justify-center gap-4">
+          <CustomerLoginForm />
+          <div className="flex gap-4">
+            <button
+              className="w-40 h-12 px-6 py-3 bg-blue-900 text-white 
+              font-semibold rounded-xl shadow-md hover:bg-blue-700 
+              transition duration-100 cursor-pointer"
+              >Log in</button>
+            <button onClick={() => router.push('/customer/signup')}
+              className="w-40 h-12 px-6 py-3 bg-blue-900 text-white 
+              font-semibold rounded-xl shadow-md hover:bg-blue-700 
+              transition duration-100 cursor-pointer"
+              >Sign Up</button>
+          </div>
         </div>) : 
         // restaurant tab active
-        (<p>restaurant tab content</p>)  
+        (<div className="flex flex-col items-center justify-center gap-4">
+          <RestaurantLoginForm/>
+          <div className="flex gap-4">
+            <button
+              className="w-40 h-12 px-6 py-3 bg-blue-900 text-white 
+              font-semibold rounded-xl shadow-md hover:bg-blue-700 
+              transition duration-100 cursor-pointer"
+              >Log in</button>
+            <button onClick={() => router.push('/restaurant/signup')}
+              className="w-40 h-12 px-6 py-3 bg-blue-900 text-white 
+              font-semibold rounded-xl shadow-md hover:bg-blue-700 
+              transition duration-100 cursor-pointer"
+              >Sign Up</button>
+          </div>
+        </div>)
       }
 
 

@@ -11,7 +11,7 @@ app.get("/", (req, res) => {
     res.send("Backend is running...");
 });
 
-app.post("/signup", async (req, res) => {
+app.post("/user-signup", async (req, res) => {
     try {
         const { name, password, email, phone } = req.body;
 
@@ -35,6 +35,44 @@ app.post("/signup", async (req, res) => {
                 res.status(400).json({ message: "Email already registered." });
             } else if (error.constraint === "unique_phone") {
                 console.log("Duplicate Phone error");
+                res.status(400).json({ message: "Phone already registered." });                
+            } else {
+                console.log("Duplicate error");
+                res.status(400).json({ message: "Duplicate error" });   
+            }
+        } else {
+            console.log("Server error");
+            res.status(500).json({ message: "Server error" });
+        }
+    }
+});
+
+
+// restaurant sign up (not finished)
+app.post("/res-signup", async (req, res) => {
+    try {
+        const { name, password, email, phone, capacity } = req.body;
+
+        // Add new restaurant to DB
+        const result = await pool.query(
+            `INSERT INTO restaurants (name, email, phone, password, capacity)
+            VALUES ($1, $2, $3, $4, $5)
+            RETURNING *;`, 
+            [name, email, phone, password, capacity]
+        );
+
+        const newRestaurant = result.rows[0];
+        console.log("Inserted user:", newRestaurant);
+        res.status(201).json({ message: "Sign up success" });
+
+    } catch (error) {
+        // 23505 - code for duplicate error
+        if (error.code === "23505") {
+            if (error.constraint === "restaurants_email_key") {
+                console.log("Duplicate Restaurant Email error");
+                res.status(400).json({ message: "Email already registered." });
+            } else if (error.constraint === "unique_res_phone") {
+                console.log("Duplicate Restaurant Phone error");
                 res.status(400).json({ message: "Phone already registered." });                
             } else {
                 console.log("Duplicate error");
