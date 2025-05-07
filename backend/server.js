@@ -85,5 +85,36 @@ app.post("/res-signup", async (req, res) => {
     }
 });
 
+app.post("/user-login", async (req, res) => {
+    const { phoneOrEmail, password } = req.body;
+
+    // Retrieve user data
+    const result = await pool.query(
+        `SELECT * FROM users WHERE email = $1 OR phone = $1;`,
+        [phoneOrEmail]
+    )
+
+    // User not found
+    if (result.rows.length === 0) {
+        return res.status(401).json({ message: "User not found" });
+    }
+
+    const user = result.rows[0];
+
+    // Check password
+    if (password !== user.password) {
+        return res.status(401).json({ message: "Incorrect Password" });
+    } else {
+        return res.status(200).json({ message: "Login successful" });
+    }
+})
+
+app.get("/restaurants-list", async (req, res) => {
+    const result = await pool.query(
+        `SELECT * FROM restaurants;`
+    )
+    return res.status(200).json(result.rows);
+})
+
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Server running on Port ${PORT}`));

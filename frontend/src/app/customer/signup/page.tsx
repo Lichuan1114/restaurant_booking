@@ -35,9 +35,9 @@ export default function CustomerSignup() {
             return;
         }
 
-        // when everything is good to send to the backend
         setErrorMessage(null);
 
+        // Send to the backend
         const response = await fetch('http://localhost:5001/user-signup', {
             method: "POST",
             headers: { "Content-Type": "application/json" },
