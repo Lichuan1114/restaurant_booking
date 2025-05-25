@@ -3,6 +3,8 @@ const cors = require("cors");
 require("dotenv").config();
 const app = express();
 const pool = require("./db");
+import jwt from 'jsonwebtoken';
+import { Request, Response } from 'express';
 
 app.use(cors());
 app.use(express.json());
@@ -48,7 +50,7 @@ app.post("/user-signup", async (req, res) => {
 });
 
 
-// restaurant sign up (not finished)
+// restaurant sign up 
 app.post("/res-signup", async (req, res) => {
     try {
         const { name, password, email, phone, capacity } = req.body;
@@ -85,7 +87,7 @@ app.post("/res-signup", async (req, res) => {
     }
 });
 
-app.post("/user-login", async (req, res) => {
+app.post("/user-login", async (req: Request, res: Response) => {
     const { phoneOrEmail, password } = req.body;
 
     // Retrieve user data
