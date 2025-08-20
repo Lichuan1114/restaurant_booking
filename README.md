@@ -1,109 +1,88 @@
-Restaurant Booking Application  
+# 🍽️ Restaurant Booking Application (Full Stack) – Work in Progress
 
-MVP Features Breakdown
-✅ Essential Features
-1️⃣ User Authentication
-	•	Verify users via email/password or Google/Facebook login
-	•	Secure authentication with JWT (JSON Web Token)
-2️⃣ Restaurant Listing
-	•	Show restaurants in a given area
-	•	Option 1: Work only with partnered restaurants (store in your database)
-	•	Option 2: Use Google Places API to list restaurants dynamically
-3️⃣ Saved Space (Wishlist/Favorites)
-	•	Users can save restaurants before booking
-	•	Allow users to remove or edit their saved list
-4️⃣ Booking System
-	•	Each restaurant has capacity limits & available time slots
-	•	Users select date, time, number of seats
-	•	Prevent overbooking by checking availability before confirmation
-5️⃣ Payment Integration
-	•	Secure a booking with a deposit or full payment
-	•	Use Stripe API or PayPal API for payment processing
+A full-stack restaurant reservation platform where customers can sign up, log in, browse restaurants, and (eventually) make reservations online. Restaurants will also have their own dashboard to manage bookings and capacity.
 
-🔥 Additional Features (After MVP)
-Once your MVP is solid, you can expand with:🚀 Restaurant Dashboard → Allow restaurants to manage bookings & availability📊 User Reviews & Ratings → Users can leave reviews for booked restaurants🔄 Cancellation & Refund Policy → Allow users to modify/cancel bookings🔔 Email & SMS Notifications → Reminders for upcoming reservations
+> This project is currently under development. Core frontend and backend functionality is implemented, with more features planned.
 
-Tech Stack
-✔ Frontend → Next.js (Great choice for SEO & SSR)  
-✔ Backend → Node.js with Express.js (Good for handling API routes & authentication)
-✔ Authentication → JWT (JSON Web Token) + OAuth (Google Login)  
-✔ Payment Gateway → Stripe API (Easy to integrate & supports various payment methods)  
-Database: PostgreSQL (Relational Database)  
-Users Table → Stores user info (email, password, etc.)  
-Restaurants Table → Stores restaurant details (name, location, capacity)  
-Bookings Table → Stores reservation details (user ID, restaurant ID, date, time, number of seats)  
+---
 
-🔹 Phase 2: User Authentication & Authorization (Week 2)
-📌 Implement Authentication (JWT/Auth0/AWS Cognito)
-	•	User sign-up & login with email/password.
-	•	Secure API routes with authentication middleware.
-	•	Allow OAuth login (Google, Facebook, etc.).
-📌 Role-Based Access Control (RBAC)
-	•	Users: Can book appointments.
-	•	Admins: Can manage availability, approve/cancel bookings.
+## ✅ Features (Implemented So Far)
 
-🔹 Phase 3: Listings & Filtering System (Week 3)
-📌 Database Schema Design (PostgreSQL/MongoDB)
-	•	Users: Store user details & authentication tokens.
-	•	Bookings: Stores reservations, timestamps, payment details.
-	•	Businesses: Stores hospital/restaurant details, available slots.
-📌 Implement API Endpoints
-	•	Create & Fetch Listings – /api/businesses
-	•	Search & Filter – Filter by location, availability, category, price, etc.
-📌 Frontend Integration
-	•	Display available hospitals/restaurants with filtering options.
+- Customer sign-up and login (React + Next.js + REST API)
+- Backend API endpoints for user registration and login
+- Password hashing using bcrypt
+- JWT authentication with protected routes
+- Customers can view a list of restaurants (dummy data from backend)
+- Responsive frontend layout using Tailwind CSS
+- Reusable UI components (e.g., `RestaurantCard`, form components)
+- PostgreSQL database with `Users` and `Restaurants` tables
+- Express + TypeScript backend with reusable middleware and database connection pool
 
-🔹 Phase 4: Booking System & Payment Integration (Week 4)
-📌 Booking Flow
-	•	Users select a date & time slot.
-	•	Backend checks availability (ensure no double bookings).
-	•	Users receive booking confirmation.
-📌 Payment System (Stripe/PayPal)
-	•	Implement deposit payments.
-	•	Store payment transactions securely.
-📌 Booking Status Management
-	•	Users can cancel/update bookings.
-	•	Admins can approve/reject bookings.
+---
 
-🔹 Phase 5: Notifications & UX Enhancements (Week 5)
-📌 Email & SMS Notifications (Twilio, SendGrid)
-	•	Booking confirmation emails.
-	•	Reminder notifications before the appointment.
-📌 Admin Dashboard (Optional but impressive!)
-	•	View & manage bookings.
-	•	Track revenue & user activity.
-📌 User Reviews & Ratings
-	•	Allow users to rate & review their experience.
-	•	Display reviews for other users.
+## 🧰 Tech Stack
 
-🔹 Phase 6: Deployment & Optimization (Week 6)
-📌 Deploy Backend on AWS EC2📌 Deploy Frontend on AWS Amplify/Vercel📌 Use AWS S3 for storing images📌 Implement CI/CD (GitHub Actions + AWS CodePipeline)📌 Optimize Performance
-	•	Database indexing & caching.
-	•	Reduce API response times.
+| Layer         | Technology |
+|---------------|------------|
+| Frontend      | Next.js (React), Tailwind CSS |
+| Backend       | Node.js, Express.js, TypeScript |
+| Database      | PostgreSQL (`pg` package) |
+| Authentication| JWT tokens (currently stored in localStorage; will switch to httpOnly cookies) |
+| Styling       | Tailwind CSS |
+| Language      | TypeScript (frontend + backend) |
 
-🎯 Final Steps: Resume & Portfolio Integration
-✅ Write a case study on GitHub/LinkedIn✅ Include a demo video of your project✅ Highlight technical challenges & solutions
-🔥 Bonus Features (For Extra Edge)
-	•	Google Maps API – Show business locations.
-	•	AI Chatbot for Customer Support (GPT API).
-	•	Admin Revenue Analytics Dashboard (Graphing tools).
+---
 
-🛠 Tools & Technologies Overview
-Feature
-Tech Stack
-Frontend
-React.js (or Next.js)
-Backend
-Node.js (Express.js) or Django/FastAPI
-Database
-PostgreSQL or MongoDB
-Authentication
-JWT, Auth0, AWS Cognito
-Payments
-Stripe, PayPal
-Notifications
-Twilio, SendGrid
-Deployment
-AWS (EC2, S3, Amplify), Vercel
-CI/CD
-GitHub Actions, AWS CodePipeline
+## 🏗 Planned Features (MVP Roadmap)
+
+### MVP Goals
+- [ ] Favoriting restaurants (wishlist)
+- [ ] Restaurant booking form (date, time, number of seats) with availability checks
+- [ ] Stripe payment integration for deposits or full payment
+- [ ] Customer "My Bookings" page
+- [ ] Restaurant login + dashboard to manage availability
+
+### Future Enhancements
+- Admin dashboard with analytics (bookings, revenue)
+- Google Maps integration for restaurant locations
+- Email/SMS notifications (Twilio, SendGrid)
+- OAuth login (Google/Facebook)
+- Dynamic restaurant filtering by location, rating, or price
+- User reviews & ratings system
+
+---
+
+## 🗄 Database Overview
+
+Current PostgreSQL tables:
+
+- **users**: `user_id`, `name`, `email`, `phone`, `password`, `role`, `created_at`
+- **restaurants**: `restaurant_id`, `name`, `email`, `phone`, `password`, `capacity`, `created_at`
+
+---
+
+## 🧪 Running Locally
+
+### Backend
+```bash
+cd backend
+npm install
+npm run dev
+```
+
+### Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
+## Motivation
+This project was built as a full-stack capstone-style personal project to showcase:
+- REST API design
+- TypeScript full-stack development
+- JWT authentication and protected routes
+- Database design and relational constraints
+- Scalable folder architecture (services, models, controllers, components)

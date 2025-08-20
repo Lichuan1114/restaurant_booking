@@ -6,4 +6,4 @@ dist/
 *.log
 .docker/
 steps.txt
-
+README copy.md

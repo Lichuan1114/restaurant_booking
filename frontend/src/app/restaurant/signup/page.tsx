@@ -19,6 +19,7 @@ export default function RestaurantSignup () {
             email: formData.get("res_email") as string || undefined,
             phone: formData.get("res_phone") as string || undefined,
             capacity: Number(formData.get("res_capacity")),
+            role: 'restaurant'
         }
 
         // Check if either email or phone is provided

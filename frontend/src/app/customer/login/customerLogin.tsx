@@ -8,9 +8,11 @@ export default function CustomerLoginForm() {
     const [phoneOrEmail, setPhoneOrEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
+    const [loading, setLoading] = useState(false);
 
     async function onSubmit (e: React.FormEvent) {
         e.preventDefault();
+        setLoading(true);
 
         try {
             const result = await fetch ('http://localhost:5001/user-login', {
@@ -23,6 +25,7 @@ export default function CustomerLoginForm() {
 
             if (result.ok) {
                 // Log in Success
+                localStorage.setItem("token", response_msg.token);
                 console.log("User Login Successfully");
                 setErrorMsg('');
                 router.push('/customer/home');
@@ -33,6 +36,8 @@ export default function CustomerLoginForm() {
             }
         } catch (e) {
             setErrorMsg("Frontend Backend connection error");
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -54,16 +59,21 @@ export default function CustomerLoginForm() {
                     className="border border-gray-400 rounded-md p-2 bg-white text-black focus:outline-none focus:ring-2 focus:ring-blue-500"/>
                 </div>
                 <div className="flex gap-4">
-                    <button type="submit"
-                    className="w-40 h-12 px-6 py-3 bg-blue-900 text-white 
-                    font-semibold rounded-xl shadow-md hover:bg-blue-700 
-                    transition duration-100 cursor-pointer"
-                    >Log in</button>
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className={`w-40 h-12 px-6 py-3 bg-blue-900 text-white font-semibold rounded-xl shadow-md
+                            ${loading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-700 transition duration-100 cursor-pointer'}`}
+                    >
+                        {loading ? "Logging in..." : "Log in"}
+                    </button>
                     <button onClick={() => router.push('/customer/signup')}
-                    className="w-40 h-12 px-6 py-3 bg-blue-900 text-white 
-                    font-semibold rounded-xl shadow-md hover:bg-blue-700 
-                    transition duration-100 cursor-pointer"
-                    >Sign Up</button>
+                        className="w-40 h-12 px-6 py-3 bg-blue-900 text-white 
+                        font-semibold rounded-xl shadow-md hover:bg-blue-700 
+                        transition duration-100 cursor-pointer"
+                    >
+                        Sign Up
+                    </button>
                 </div>
             </form>
         </>
