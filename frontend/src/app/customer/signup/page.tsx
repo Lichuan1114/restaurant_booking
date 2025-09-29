@@ -40,13 +40,13 @@ export default function CustomerSignup() {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(newUser),
+                credentials: "include",
             });
 
             const response_msg = await response.json();
 
             if (response.ok) {
-                console.log("Signup successful");
-                router.push("/");
+                router.push("/customer/home");
             } else {
                 setErrorMessage(response_msg.message || "Sign up failed, please try again.");
             }

@@ -7,31 +7,43 @@ import RestaurantLoginForm from "./restaurant/login/restaurantLogin";
 
 export default function Home() {
 	const [activeTab, setActiveTab] = useState<'customer' | 'restaurant'>('customer');
+	const [loading, setLoading] = useState(true);
 	const router = useRouter();
-
+	
 	// Check Token
 	useEffect(() => {
-		const token = localStorage.getItem("token");
-
-		if (!token) return;
-
-		const verifyToken = async () => {
+		async function checkToken() {
 			try {
-				const result = await fetch ('http://localhost:5001/auth-check', {
-					headers: {
-					Authorization: `Bearer ${token}`
-					}
-				});
+				const res = await fetch("http://localhost:5001/auth-check", {
+					method: "GET",
+					credentials: "include"
+				})
 
-				const data = await result.json();
-				console.log("Valid token", data);
+				if (res.ok) {
+					const data = await res.json();
+					console.log("Authenticated user:", data.user);
+		  
+					// Decide where to redirect (based on role maybe)
+					if (data.user.role === "restaurant") {
+					  router.replace("/");
+					} else {
+					  router.replace("/customer/home"); 
+					}
+					return;
+				}
 
 			} catch (err) {
-				console.error("Invalid token");
+				console.error("Auth check failed", err);
+			} finally {
+				setLoading(false);
 			}
-		};
-		verifyToken();
-	}, [])
+		}
+		checkToken();
+	}, [router]);
+
+	if (loading) {
+		return <p>Checking session...</p>;
+	}
 
 	return (
 		<div 

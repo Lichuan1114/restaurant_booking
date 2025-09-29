@@ -19,13 +19,13 @@ export default function CustomerLoginForm() {
                 method: "POST",
                 headers: {"Content-Type" : "application/json"},
                 body: JSON.stringify({ phoneOrEmail, password}),
+                credentials: "include",
             })
 
             const response_msg = await result.json();
 
             if (result.ok) {
                 // Log in Success
-                localStorage.setItem("token", response_msg.token);
                 console.log("User Login Successfully");
                 setErrorMsg('');
                 router.push('/customer/home');
