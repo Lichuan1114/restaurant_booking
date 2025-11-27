@@ -1,32 +1,17 @@
 'use client';
+type Tab = { label: string, href: string };
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+type sidebarProps = { tabs: Tab[] }
 
-/* Link tabs used in the sidebar */
-const sidebarTabs = [
-    { label: 'Home', href: '/customer/home' },
-    { label: 'Saved', href: '/customer/saved' },
-    { label: 'Log Out', href: '/customer/logout' }
-];
-
-export default function SideBar () {
-    const pathname = usePathname();
-
+export default function SideBar ( props: sidebarProps ) {
     return (
         <div className="p-4 space-y-2">
-            {sidebarTabs.map((tab) => (
-                <Link
-                    key={tab.href}
-                    href={tab.href}
-                    className={`block w-full text-left px-4 py-2 rounded ${
-                        pathname === tab.href 
-                            ? 'bg-gray-700 text-white font-bold' 
-                            : 'hover:bg-gray-600 text-gray-300'
-                    }`}
-                >
-                    {tab.label}
-                </Link>
+            {props.tabs.map((tab) => (
+                <a
+                    key = {tab.href}
+                    href = {tab.href}
+                    className="block w-full px-4 py-2 rounded hover:bg-gray-600"
+                > { tab.label } </a>
             ))}
         </div>
     )

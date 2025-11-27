@@ -23,9 +23,8 @@ export default function Home() {
 					const data = await res.json();
 					console.log("Authenticated user:", data.user);
 		  
-					// Decide where to redirect (based on role maybe)
 					if (data.user.role === "restaurant") {
-					  router.replace("/");
+					  router.replace("/restaurant/home");
 					} else {
 					  router.replace("/customer/home"); 
 					}

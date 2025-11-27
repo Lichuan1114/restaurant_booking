@@ -26,11 +26,14 @@ CREATE TABLE restaurants (
 
 -- Create reservations table
 CREATE TABLE reservations (
-  reservation_id SERIAL PRIMARY KEY,
-  restaurant_id INTEGER REFERENCES restaurants(restaurant_id) NOT NULL,
-  user_id INTEGER REFERENCES users(user_id) NOT NULL,
-  reservation_time TIMESTAMP,
-  status VARCHAR(100) DEFAULT 'pending'
+    reservation_id SERIAL PRIMARY KEY,
+    restaurant_id INT NOT NULL REFERENCES restaurants(restaurant_id),
+    user_id INT NOT NULL REFERENCES users(user_id),
+    slot_id INT NOT NULL REFERENCES available_slots(slot_id),
+    reservation_date DATE NOT NULL,
+    reservation_time TIME NOT NULL,
+    party_size INT NOT NULL,
+    status VARCHAR(20) DEFAULT 'confirmed'
 );
 
 -- Create available slot table
