@@ -125,7 +125,66 @@ This guarantees **data integrity under concurrent requests**.
 
 ## 🧪 Running Locally
 
-### Backend
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Lichuan1114/restaurant_booking.git
+cd restaurant_booking
+```
+
+---
+
+### 2. Start PostgreSQL (Docker)
+
+Make sure Docker is running, then start your database container:
+
+```bash
+docker start restaurant_booking-db-1
+```
+
+> If you don’t have the container yet, you will need to create one (see below).
+
+---
+
+### 3. Create and Seed the Database
+
+Create a fresh test database:
+
+```bash
+docker exec -it restaurant_booking-db-1 psql -U admin -d postgres -c "DROP DATABASE IF EXISTS restaurant_test;"
+docker exec -it restaurant_booking-db-1 psql -U admin -d postgres -c "CREATE DATABASE restaurant_test;"
+```
+
+Run schema:
+
+```bash
+docker exec -i restaurant_booking-db-1 psql -U admin -d restaurant_test < database/create_table.sql
+```
+
+Seed data:
+
+```bash
+docker exec -i restaurant_booking-db-1 psql -U admin -d restaurant_test < database/seed.sql
+```
+
+---
+
+### 4. Configure Environment Variables
+
+Create a `.env` file inside `backend/`:
+
+```env
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=admin
+DB_PASSWORD=<your_password>
+DB_NAME=restaurant_test
+JWT_SECRET=your_secret_key
+```
+
+---
+
+### 5. Run Backend
 
 ```bash
 cd backend
@@ -133,13 +192,29 @@ npm install
 npm run dev
 ```
 
-### Frontend (Work in Progress)
+---
+
+### 6. Run Frontend (Optional / WIP)
 
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
+
+---
+
+### 🔑 Test Credentials
+
+Customer:
+
+* Email: `user1@gmail.com`
+* Password: `user1`
+
+Restaurant:
+
+* Email: `res1@test.com`
+* Password: `res1`
 
 ---
 

@@ -1,0 +1,61 @@
+-- USERS
+INSERT INTO users (name, email, phone, password, role)
+VALUES 
+(
+  'user1',
+  'user1@gmail.com',
+  '0400000001',
+  '$2b$10$gHjfoYnIyYT2vczQZyjL3e7e2G0DCUsvLIN081CsIhUEWLi7MUs.m',
+  'customer'
+),
+(
+  'user2',
+  'user2@gmail.com',
+  '0400000002',
+  '$2b$10$vE51L/M68heWex9aV3Tp0OPfHQKmUDNiN.QA.YLOPrSCwoKUvVCw2',
+  'customer'
+),
+(
+  'user3',
+  'user3@gmail.com',
+  '0400000003',
+  '$2b$10$RXm5QRrpzR07XXK6WhbaKOZThx/D7NYD8vsYgJdUoA68iamoklkJS',
+  'customer'
+);
+
+-- RESTAURANTS
+INSERT INTO restaurants (name, email, phone, password, capacity, role, open_time, close_time, last_booking_time)
+VALUES 
+(
+  'res1',
+  'res1@gmail.com',
+  '0400000011',
+  '$2b$10$DbV.9dAAOBRDbQ3M3ekXRe7A6dTO0p/mmiHt8L/ieipfCsnM6uwV.',
+  30,
+  'restaurant',
+  '15:00:00',
+  '22:00:00',
+  '21:00:00'
+),
+(
+  'res2',
+  'res2@gmail.com',
+  '0400000012',
+  '$2b$10$uoaXDpSbMAR3ZA2PnQufIOEDXwUMK5BDlgFOi8dizdp7X85Q5dE6G',
+  50,
+  'restaurant',
+  '17:00:00',
+  '21:00:00',
+  '20:00:00'
+),
+(
+  'res3',
+  'res3@gmail.com',
+  '0400000013',
+  '$2b$10$QKluxLJpWe/buaTskh4loOHQg09.Jgdf/vKcrorHjLX3dRdgzG4ca',
+  25,
+  'restaurant',
+  '08:00:00',
+  '17:00:00',
+  '15:00:00'
+);
