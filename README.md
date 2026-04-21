@@ -136,35 +136,35 @@ cd restaurant_booking
 
 ### 2. Start PostgreSQL (Docker)
 
-Make sure Docker is running, then start your database container:
+Make sure Docker is installed and running.
+
+Start PostgreSQL:
 
 ```bash
-docker start restaurant_booking-db-1
+docker compose up -d
 ```
 
-> If you don’t have the container yet, you will need to create one (see below).
-
----
+This will start a PostgreSQL instance accessible at localhost:5432.
 
 ### 3. Create and Seed the Database
 
-Create a fresh test database:
+Run schema:
 
 ```bash
-docker exec -it restaurant_booking-db-1 psql -U admin -d postgres -c "DROP DATABASE IF EXISTS restaurant_test;"
-docker exec -it restaurant_booking-db-1 psql -U admin -d postgres -c "CREATE DATABASE restaurant_test;"
+docker exec -i restaurant-db psql -U admin -d restaurant_test < database/create_table.sql
+docker exec -i restaurant-db psql -U admin -d restaurant_test < database/seed.sql
 ```
 
 Run schema:
 
 ```bash
-docker exec -i restaurant_booking-db-1 psql -U admin -d restaurant_test < database/create_table.sql
+docker exec -i restaurant-db psql -U admin -d restaurant_test < database/create_table.sql
 ```
 
 Seed data:
 
 ```bash
-docker exec -i restaurant_booking-db-1 psql -U admin -d restaurant_test < database/seed.sql
+docker exec -i restaurant-db psql -U admin -d restaurant_test < database/seed.sql
 ```
 
 ---
@@ -211,10 +211,16 @@ Customer:
 * Email: `user1@gmail.com`
 * Password: `user1`
 
+* Email: `user2@gmail.com`
+* Password: `user2`
+
 Restaurant:
 
-* Email: `res1@test.com`
+* Email: `res1@gmail.com`
 * Password: `res1`
+
+* Email: `res2@gmail.com`
+* Password: `res2`
 
 ---
 
