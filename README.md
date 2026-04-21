@@ -151,19 +151,7 @@ This will start a PostgreSQL instance accessible at localhost:5432.
 Run schema:
 
 ```bash
-docker exec -i restaurant-db psql -U admin -d restaurant_test < database/create_table.sql
-docker exec -i restaurant-db psql -U admin -d restaurant_test < database/seed.sql
-```
-
-Run schema:
-
-```bash
-docker exec -i restaurant-db psql -U admin -d restaurant_test < database/create_table.sql
-```
-
-Seed data:
-
-```bash
+docker exec -i restaurant-db psql -U admin -d restaurant_test < database/create_tables.sql
 docker exec -i restaurant-db psql -U admin -d restaurant_test < database/seed.sql
 ```
 
@@ -177,7 +165,7 @@ Create a `.env` file inside `backend/`:
 DB_HOST=localhost
 DB_PORT=5432
 DB_USER=admin
-DB_PASSWORD=<your_password>
+DB_PASSWORD=admin
 DB_NAME=restaurant_test
 JWT_SECRET=your_secret_key
 ```
