@@ -8,6 +8,18 @@ Customers can browse restaurants and make reservations, while restaurants manage
 
 ---
 
+## ⚡ Quick Start
+
+```bash
+docker compose up -d
+docker exec -i restaurant-db psql -U admin -d restaurant_test < database/create_tables.sql
+docker exec -i restaurant-db psql -U admin -d restaurant_test < database/seed.sql
+
+cd backend && npm install && npm run dev
+```
+
+---
+
 ## 🚀 Key Highlights
 
 * 🔐 Secure authentication with JWT and HTTP-only cookies
