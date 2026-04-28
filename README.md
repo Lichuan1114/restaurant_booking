@@ -131,9 +131,80 @@ Response:
   "message": "Login successful",
   "user": {
     "user_id": 1,
+    "name": "user1",
     "email": "user1@gmail.com",
+    "phone": "0400000001",
     "role": "customer"
   }
+}
+```
+
+---
+
+### 🏨 Get All Restaurants
+
+**GET** `/api/restaurants`
+
+Response:
+
+```json
+[
+  {
+    "restaurant_id": 1,
+    "name": "res1",
+    "email": "res1@gmail.com",
+    "phone": "0400000011"
+  },
+  {
+    "restaurant_id": 2,
+    "name": "res2",
+    "email": "res2@gmail.com",
+    "phone": "0400000012"
+  }
+]
+```
+
+---
+
+### 📅 Create Reservation
+
+**POST** `/api/reservations`
+
+Request:
+
+```json
+{
+  "slot_id": 5,
+  "party_size": 5
+}
+```
+
+Response:
+
+```json
+{
+  "message": "Reservation created",
+  "reservation": {
+    "restaurant_id": 1,
+    "user_id": 1,
+    "slot_id": 5,
+    "reservation_date": "2026-04-20",
+    "reservation_time": "19:00:00",
+    "party_size": 5
+  }
+}
+```
+
+---
+
+### ❌ Delete Reservation
+
+**DELETE** `/api/reservations/:id`
+
+Response:
+```json
+{
+  "message": "Reservation deleted"
 }
 ```
 
