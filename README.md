@@ -217,7 +217,7 @@ Response:
 ### 🧪 Example (cURL)
 
 ```bash
-curl -X POST http://localhost:5001/api/auth/user-login \
+curl -X POST http://localhost:5001/auth/user-login \
   -H "Content-Type: application/json" \
   -d '{"phoneOrEmail":"user1@gmail.com","password":"user1"}'
 ```
