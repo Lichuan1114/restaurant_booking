@@ -10,6 +10,8 @@ Customers can browse restaurants and make reservations, while restaurants manage
 
 ## ⚡ Quick Start
 
+> Backend runs on: http://localhost:5001
+
 ```bash
 docker compose up -d
 docker exec -i restaurant-db psql -U admin -d restaurant_test < database/create_tables.sql
@@ -113,7 +115,7 @@ These endpoints can be tested using tools like Postman or curl.
 
 ### 🔑 Login
 
-**POST** `/api/auth/login`
+**POST** `/api/auth/user-login`
 
 Request:
 
@@ -206,6 +208,16 @@ Response:
 {
   "message": "Reservation deleted"
 }
+```
+
+--- 
+
+### 🧪 Example (cURL)
+
+```bash
+curl -X POST http://localhost:5001/api/auth/user-login \
+  -H "Content-Type: application/json" \
+  -d '{"phoneOrEmail":"user1@gmail.com","password":"user1"}'
 ```
 
 ---
