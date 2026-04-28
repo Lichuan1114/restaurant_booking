@@ -104,6 +104,41 @@ This guarantees **data integrity under concurrent requests**.
 
 ---
 
+## 📡 API Examples
+
+Below are sample API requests demonstrating core backend functionality.  
+These endpoints can be tested using tools like Postman or curl.
+
+---
+
+### 🔑 Login
+
+**POST** `/api/auth/login`
+
+Request:
+
+```json
+{
+  "phoneOrEmail": "user1@gmail.com",
+  "password": "user1"
+}
+```
+
+Response:
+
+```json
+{
+  "message": "Login successful",
+  "user": {
+    "user_id": 1,
+    "email": "user1@gmail.com",
+    "role": "customer"
+  }
+}
+```
+
+---
+
 ## 🧰 Tech Stack
 
 | Layer    | Technology                                    |
