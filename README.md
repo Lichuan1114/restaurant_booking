@@ -111,11 +111,13 @@ This guarantees **data integrity under concurrent requests**.
 Below are sample API requests demonstrating core backend functionality.  
 These endpoints can be tested using tools like Postman or curl.
 
+> Base URL (local): http://localhost:5001
+
 ---
 
 ### 🔑 Login
 
-**POST** `/api/auth/user-login`
+**POST** `/auth/user-login`
 
 Request:
 
@@ -145,7 +147,7 @@ Response:
 
 ### 🏨 Get All Restaurants
 
-**GET** `/api/restaurants`
+**GET** `/restaurants`
 
 Response:
 
@@ -170,7 +172,7 @@ Response:
 
 ### 📅 Create Reservation
 
-**POST** `/api/reservations`
+**POST** `/reservations`
 
 Request:
 
@@ -201,7 +203,7 @@ Response:
 
 ### ❌ Delete Reservation
 
-**DELETE** `/api/reservations/:id`
+**DELETE** `/reservations/:id`
 
 Response:
 ```json
