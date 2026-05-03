@@ -112,6 +112,8 @@ Below are sample API requests demonstrating core backend functionality.
 These endpoints can be tested using tools like Postman or curl.
 
 > Base URL (local): http://localhost:5001
+> ⚠️ Note: Authentication uses httpOnly cookies.
+> For authenticated endpoints, please use Postman or a browser, as tools like curl require manual cookie handling.
 
 ---
 
