@@ -26,8 +26,23 @@ cd backend && npm install && npm run dev
 
 ### User Login
 
-<img width="1428" height="672" alt="user-login" src="https://github.com/user-attachments/assets/7ceb5cb5-71fa-449f-bce3-f2cb6601a982" />
+<img width="1069" height="406" alt="user-login" src="https://github.com/user-attachments/assets/834e0aaa-385f-4dfd-a64b-6f161cc595ae" />
 Users can authenticate before making reservations.
+
+---
+
+### Restaurant Browsing
+
+<img width="1431" height="666" alt="restaurant-list" src="https://github.com/user-attachments/assets/f76a1c84-a126-43f9-bd5a-5c24998f55de" />
+Users can view available restaurants and select one to make a booking.
+
+---
+
+### Restaurant Availability and Booking
+
+<img width="1430" height="664" alt="reservation-slots" src="https://github.com/user-attachments/assets/90b54570-cafc-478a-abc0-1198b41c71b3" />
+Users can select an available time slot and specify the number of guests.
+The backend validates availability and prevents overbooking using PostgreSQL transactions.
 
 ---
 
