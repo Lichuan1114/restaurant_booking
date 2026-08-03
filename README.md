@@ -22,6 +22,15 @@ cd backend && npm install && npm run dev
 
 ---
 
+## Screenshots
+
+### User Login
+
+<img width="1428" height="672" alt="user-login" src="https://github.com/user-attachments/assets/7ceb5cb5-71fa-449f-bce3-f2cb6601a982" />
+Users can authenticate before making reservations.
+
+---
+
 ## 🚀 Key Highlights
 
 * 🔐 Secure authentication with JWT and HTTP-only cookies
