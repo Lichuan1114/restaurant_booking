@@ -42,6 +42,7 @@ Users can view available restaurants and select one to make a booking.
 
 <img width="1430" height="664" alt="reservation-slots" src="https://github.com/user-attachments/assets/90b54570-cafc-478a-abc0-1198b41c71b3" />
 Users can select an available time slot and specify the number of guests.
+
 The backend validates availability and prevents overbooking using PostgreSQL transactions.
 
 ---
